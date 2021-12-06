@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from 'react';
+
+import { GlobalStyles } from './GlobalStyles';
+import Navbar from './components/Navbar/Navbar';
+import Hero from './containers/Hero/Hero';
+import More from './containers/More/More';
+import Contact from './containers/Contact/Contact';
 
 function App() {
+  useEffect(() => {
+    (() => {
+      const html = document.getElementsByTagName('html')[0];
+      if (html.scrollWidth > html.clientWidth) {
+        html.style.marginRight = -(html.offsetWidth - html.clientWidth) + 'px';
+      }
+    })();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <GlobalStyles />
+      <Navbar />
+      <Hero />
+      <More />
+      <Contact />
     </div>
   );
 }
